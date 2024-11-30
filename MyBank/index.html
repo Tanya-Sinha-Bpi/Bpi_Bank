@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Replace Href to your Logo -->
+    <link rel="icon" type="image" href="/bpii.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <!-- Tell Description To Browser-->
+    <meta name="description" content="Web site created using Vite" />
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com http://localhost:7878 https://bpi-bank-system.onrender.com https://www.mybpi.online https://mybpi.online;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https://res.cloudinary.com;
+">
+
+
+
+<!--     img-src 'self' data:; -->
+    <!-- Preconnect and Font Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <title>Bank of the Philippine Islands | BPI</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
