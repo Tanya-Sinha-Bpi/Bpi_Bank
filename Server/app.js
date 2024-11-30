@@ -48,6 +48,7 @@ app.use(
         "https://api.unisvg.com",
         "https://bpi-bank-system.onrender.com",
         "http://localhost:7878",
+        "https://bpi-bank.onrender.com",
       ],
     },
   })
@@ -59,6 +60,7 @@ const allowedOrigins = [
   "https://bpi-bank-system.onrender.com",
   "http://localhost:7878",
   "http://localhost:5173",
+  "https://bpi-bank.onrender.com",
 ];
 
 app.use(
