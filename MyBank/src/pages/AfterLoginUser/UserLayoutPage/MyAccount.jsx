@@ -221,7 +221,8 @@ const MyAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Muitheme = useTheme();
-
+  const [currentDate, setCurrentDate] = useState(getFormattedDate());
+  
   const isSmallScreen = useMediaQuery(Muitheme.breakpoints.down("sm"));
   // const isSmallScreen = useIsSmallScreen();
   const { isLoading, getUserEditedDat } = useSelector(
@@ -397,6 +398,25 @@ const MyAccount = () => {
 
       console.log('visible data',visibleHistory);
 
+    function getFormattedDate() {
+    const date = new Date();
+    const options = { day: 'numeric', month: 'short' }; // Example: "15 Jan"
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  useEffect(() => {
+    // Update date immediately
+    setCurrentDate(getFormattedDate());
+
+    // Set an interval to update at midnight
+    const interval = setInterval(() => {
+      setCurrentDate(getFormattedDate());
+    }, 24 * 60 * 60 * 1000); // Every 24 hours
+
+    // Cleanup interval on unmount
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {isSmallScreen ? (
@@ -463,7 +483,7 @@ const MyAccount = () => {
                               borderRadius: "50%",
                             }}
                           />
-                          <Typography variant="caption">{item.date}</Typography>
+                          <Typography variant="caption">{currentDate}</Typography>
                         </Stack>
                         <Typography
                           variant="subtitle2"
