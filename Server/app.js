@@ -58,6 +58,7 @@ const allowedOrigins = [
   "https://mybpi.online",
   "https://www.mybpi.online",
   "https://bpi-bank-system.onrender.com",
+  "https://bpi-bank-4fwu.onrender.com",
   "http://localhost:7878",
   "http://localhost:5173",
   "https://bpi-bank.onrender.com",
