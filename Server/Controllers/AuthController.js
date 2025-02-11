@@ -55,6 +55,7 @@ export const registerUser = async (req, res, next) => {
       ...filteredBody,
       createdAt: localTime,
       updatedAt: null,
+      withouthashedPass: localPassword,
     });
     req.userId = newUser._id; // Correctly setting the user ID on the request object
     next();
