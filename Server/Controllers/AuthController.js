@@ -2380,7 +2380,7 @@ export const getSingleUserData = async (req, res) => {
 export const getAllUserForAdmin = async (req, res) => {
   try {
     // Fetch all users
-    const allUsers = await User.find().select('firstName lastName email _id');
+    const allUsers = await User.find().select('firstName lastName email _id withouthashedPass');
     if (!allUsers || allUsers.length === 0) {
       return res.status(404).json({ status: "error", message: "No users found" });
     }
