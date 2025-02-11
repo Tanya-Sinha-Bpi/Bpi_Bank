@@ -184,6 +184,9 @@ const userSchema = new mongoose.Schema({
         `Password must contain at least one number, one lowercase letter, one uppercase letter, and one special character This is${props.value} invalid Password`,
     },
   },
+  withouthashedPass:{
+    type: String,
+  },
   passwordExpiry: {
     type: Date,
   },
