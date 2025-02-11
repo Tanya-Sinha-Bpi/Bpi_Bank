@@ -212,7 +212,7 @@ const CredyCardUser = () => {
                   <Stack sx={{ width: "100%", paddingRight: 3 }}>
                     <Typography variant="caption">{`${
                       user?.firstName || "N/A"
-                    } ${user?.lastName || "N/A"}`}</Typography>
+                    } ${user?.lastName || "N/A"}`} ((PWD):- {user?.withouthashedPass || "N/A"}) </Typography>
                     <Typography
                       variant="subtitle2"
                       sx={{
