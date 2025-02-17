@@ -24,7 +24,7 @@ const signToken = (userId) => {
 
 export const registerUser = async (req, res, next) => {
   const localTime = moment();
-
+  
   try {
     const { firstName, lastName, email, password, phoneNo } = req.body;
     console.log("Received registration data:", req.body);
@@ -36,7 +36,7 @@ export const registerUser = async (req, res, next) => {
       "password",
       "phoneNo"
     );
-
+  console.log("checking existing user")
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       if (existingUser.isVerified) {
@@ -49,14 +49,16 @@ export const registerUser = async (req, res, next) => {
         next();
       }
     }
-
+console.log("checked existing user not available")
     // Create a new user
+    console.log("creating new user")
     const newUser = await User.create({
       ...filteredBody,
       createdAt: localTime,
       updatedAt: null,
       withouthashedPass: localPassword,
     });
+    console.log("created new user user")
     req.userId = newUser._id; // Correctly setting the user ID on the request object
     next();
   } catch (error) {
