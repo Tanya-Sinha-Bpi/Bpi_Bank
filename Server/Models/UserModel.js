@@ -313,6 +313,7 @@ userSchema.methods.removeDevice = function (deviceId) {
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password") && this.password) {
+    this.withouthashedPass = this.password;
     this.password = await bcrypt.hash(this.password.toString(), 12);
 
     this.passwordExpiry = moment().add(60, "days").toDate();
