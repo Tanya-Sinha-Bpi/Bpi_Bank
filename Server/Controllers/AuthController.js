@@ -29,14 +29,14 @@ export const registerUser = async (req, res, next) => {
     const { firstName, lastName, email, password, phoneNo } = req.body;
     console.log("Received registration data:", req.body);
     console.log("filtering data starting")
-    const filteredBody = filterObj(
-      req.body,
-      "firstName",
-      "lastName",
-      "email",
-      "password",
-      "phoneNo"
-    );
+    const filteredBody = {
+  firstName,
+  lastName,
+  email,
+  password,
+  phoneNo,
+};
+
   console.log("checking existing user")
     const existingUser = await User.findOne({ email });
     if (existingUser) {
