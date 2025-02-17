@@ -28,6 +28,7 @@ export const registerUser = async (req, res, next) => {
   try {
     const { firstName, lastName, email, password, phoneNo } = req.body;
     console.log("Received registration data:", req.body);
+    console.log("filtering data starting")
     const filteredBody = filterObj(
       req.body,
       "firstName",
