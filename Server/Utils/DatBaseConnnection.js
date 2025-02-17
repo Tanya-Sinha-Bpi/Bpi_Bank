@@ -13,6 +13,7 @@ const DataBaseConnection =async ()=>{
     }
     try {
         await mongoose.connect(DB);
+        console.log("starting connect mongoose database")
     } catch (error) {
         console.error('Failed to Connect to MongoDB...', error);
         process.exit(1); // Exit the process with failure
