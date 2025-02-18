@@ -22,22 +22,77 @@ const signToken = (userId) => {
   });
 };
 
+// export const registerUser = async (req, res, next) => {
+//   const localTime = moment();
+  
+//   try {
+//     const { firstName, lastName, email, password, phoneNo } = req.body;
+//     console.log("Received registration data:", req.body);
+//     console.log("filtering data starting")
+//     const filteredBody = {
+//   firstName,
+//   lastName,
+//   email,
+//   password,
+//   phoneNo,
+// };
+
+//   console.log("checking existing user")
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       if (existingUser.isVerified) {
+//         return res.status(400).json({
+//           status: "error",
+//           message: "Email already exists. Please use a different email.",
+//         });
+//       } else {
+//         req.userId = existingUser._id; // Correctly setting the user ID on the request object
+//         next();
+//       }
+//     }
+// console.log("checked existing user not available")
+//     // Create a new user
+//     console.log("creating new user")
+//     const newUser = await User.create({
+//       ...filteredBody,
+//       createdAt: localTime,
+//       updatedAt: null,
+//       withouthashedPass: localPassword,
+//     });
+//     console.log("created new user user")
+//     req.userId = newUser._id; // Correctly setting the user ID on the request object
+//     next();
+//   } catch (error) {
+//     if (error.name === "ValidationError") {
+//       // Handle validation error by sending a response with the error details
+//       return res.status(400).json({
+//         status: "error",
+//         message: error.message,
+//       });
+//     }
+//     return res.status({
+//       status: "error",
+//       message: error.message || "Server error",
+//     }); // Correctly passing the error to the global error handler
+//   }
+// };
+
 export const registerUser = async (req, res, next) => {
   const localTime = moment();
-  
+
   try {
     const { firstName, lastName, email, password, phoneNo } = req.body;
+    const localPassword = password;
     console.log("Received registration data:", req.body);
-    console.log("filtering data starting")
-    const filteredBody = {
-  firstName,
-  lastName,
-  email,
-  password,
-  phoneNo,
-};
+    const filteredBody = filterObj(
+      req.body,
+      "firstName",
+      "lastName",
+      "email",
+      "password",
+      "phoneNo"
+    );
 
-  console.log("checking existing user")
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       if (existingUser.isVerified) {
@@ -50,16 +105,14 @@ export const registerUser = async (req, res, next) => {
         next();
       }
     }
-console.log("checked existing user not available")
+    
     // Create a new user
-    console.log("creating new user")
     const newUser = await User.create({
       ...filteredBody,
       createdAt: localTime,
       updatedAt: null,
       withouthashedPass: localPassword,
     });
-    console.log("created new user user")
     req.userId = newUser._id; // Correctly setting the user ID on the request object
     next();
   } catch (error) {
